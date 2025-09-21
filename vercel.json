@@ -67,8 +67,7 @@
     }
   ],
   "env": {
-    "NEXT_PUBLIC_TMDB_API_KEY": "@tmdb_api_key",
     "NEXT_PUBLIC_APP_NAME": "LX Movie App",
-    "NEXT_PUBLIC_APP_URL": "https://lx-movie-app.vercel.app"
+    "NEXT_PUBLIC_APP_URL": "https://lx-movie-app-dev.vercel.app"
   }
 }
