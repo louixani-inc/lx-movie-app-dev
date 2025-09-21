@@ -1,0 +1,74 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "framework": "nextjs",
+  "regions": ["iad1"],
+  "functions": {
+    "app/api/**/*.ts": {
+      "runtime": "nodejs18.x"
+    }
+  },
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, PUT, DELETE, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type, Authorization"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/tmdb-api/(.*)",
+      "destination": "https://api.themoviedb.org/3/$1"
+    },
+    {
+      "source": "/streaming-api/vidsrc/(.*)",
+      "destination": "https://vidsrc.to/embed/$1"
+    },
+    {
+      "source": "/streaming-api/superembed/(.*)",
+      "destination": "https://multiembed.mov/directstream.php?video_id=$1"
+    },
+    {
+      "source": "/streaming-api/embedsu/(.*)",
+      "destination": "https://embed.su/embed/$1"
+    }
+  ],
+  "env": {
+    "NEXT_PUBLIC_TMDB_API_KEY": "@tmdb_api_key",
+    "NEXT_PUBLIC_APP_NAME": "LX Movie App",
+    "NEXT_PUBLIC_APP_URL": "https://lx-movie-app.vercel.app"
+  }
+}
