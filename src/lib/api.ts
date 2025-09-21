@@ -188,6 +188,22 @@ export const movieAPI = {
     return response.data;
   },
 
+  // Get top rated movies
+  getTopRatedMovies: async (page: number = 1): Promise<MovieResponse> => {
+    const response = await tmdbApi.get('/movie/top_rated', {
+      params: { page },
+    });
+    return response.data;
+  },
+
+  // Get now playing movies
+  getNowPlayingMovies: async (page: number = 1): Promise<MovieResponse> => {
+    const response = await tmdbApi.get('/movie/now_playing', {
+      params: { page },
+    });
+    return response.data;
+  },
+
   // Get movie details
   getMovieDetails: async (movieId: number): Promise<MovieDetails> => {
     const response = await tmdbApi.get(`/movie/${movieId}`, {
